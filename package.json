@@ -1,12 +1,12 @@
 {
-    "name": "com.cm.core",
-    "displayName": "CM Core",
-    "version": "0.1.0",
-    "unity": "6000.3",
-    "author": "Casper Meloen",
-    "description": "CM Core is an engine independent framework for building games.",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/empireboy/com.cm.core.git"
-    }
+  "name": "com.cm.core",
+  "displayName": "CM Core",
+  "version": "0.1.0",
+  "unity": "6000.3",
+  "author": "Casper Meloen",
+  "description": "CM Core is an engine independent framework for building games.",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/empireboy/com.cm.core.git"
+  }
 }
