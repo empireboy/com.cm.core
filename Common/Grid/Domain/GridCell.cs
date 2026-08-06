@@ -5,8 +5,10 @@ namespace CM.Core.Domain
         public Int2 Position { get; }
         public bool IsBlocked { get; set; }
         public IGridEntity Occupant { get; private set; }
+        public IGridTrigger Trigger { get; private set; }
 
         public bool IsOccupied => Occupant != null;
+        public bool HasTrigger => Trigger != null;
 
         public GridCell(Int2 position)
         {
@@ -17,10 +19,20 @@ namespace CM.Core.Domain
         {
             Occupant = entity;
         }
+
+        public void SetTrigger(IGridTrigger trigger)
+        {
+            Trigger = trigger;
+        }
         
         public void ClearOccupant()
         {
             Occupant = null;
+        }
+
+        public void ClearTrigger()
+        {
+            Trigger = null;
         }
     }
 }

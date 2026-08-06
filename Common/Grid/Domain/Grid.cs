@@ -18,7 +18,7 @@ namespace CM.Core.Domain
             {
                 for (int y = 0; y < height; y++)
                 {
-                    _cells[x, y] = CreateCell(new Int2(x, y));
+                    _cells[x, y] = new GridCell(new Int2(x, y));
                 }
             }
         }
@@ -62,11 +62,6 @@ namespace CM.Core.Domain
             GridCell cell = GetCell(position);
 
             cell.ClearOccupant();
-        }
-
-        protected virtual GridCell CreateCell(Int2 position)
-        {
-            return new GridCell(position);
         }
     }
 }
