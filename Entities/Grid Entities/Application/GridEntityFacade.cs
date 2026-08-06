@@ -33,6 +33,12 @@ namespace CM.Core.Application
             remove => _entity.MovementFinished -= value;
         }
 
+        public event Action<Int2> TileReached
+        {
+            add => _entity.TileReached += value;
+            remove => _entity.TileReached -= value;
+        }
+
         private readonly IGridEntity _entity;
         private readonly GridMovementUseCase _gridMovementUseCase;
         private readonly GridTeleportUseCase _gridTeleportUseCase;

@@ -12,6 +12,7 @@ namespace CM.Core.Domain
         event Action<Direction> DirectionChanged;
         event Action<bool> MovementStateChanged;
         event Action MovementFinished;
+        event Action<Int2> TileReached;
 
         void SetPosition(Int2 position);
         void SetDirection(Direction direction);

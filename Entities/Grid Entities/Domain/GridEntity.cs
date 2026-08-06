@@ -12,6 +12,7 @@ namespace CM.Core.Domain
         public event Action<Direction> DirectionChanged;
         public event Action<bool> MovementStateChanged;
         public event Action MovementFinished;
+        public event Action<Int2> TileReached;
 
         public GridEntity(Int2 position, Direction direction)
         {
@@ -51,6 +52,7 @@ namespace CM.Core.Domain
 
         public void FinishMovement()
         {
+            TileReached?.Invoke(Position);
             MovementFinished?.Invoke();
         }
     }
