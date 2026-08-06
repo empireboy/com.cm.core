@@ -21,6 +21,12 @@ namespace CM.Core.Application
             remove => _entity.DirectionChanged -= value;
         }
 
+        public event Action<Int2> Teleported
+        {
+            add => _entity.Teleported += value;
+            remove => _entity.Teleported -= value;
+        }
+
         public event Action<bool> MovementStateChanged
         {
             add => _entity.MovementStateChanged += value;
@@ -55,5 +61,6 @@ namespace CM.Core.Application
         public bool TryTeleport(Int2 position, Direction direction) => _gridTeleportUseCase.TryTeleport(position, direction);
         public void SetMoving(bool moving) => _entity.SetMoving(moving);
         public void NotifyMovementFinished() => _entity.FinishMovement();
+        public void Teleport(Int2 position) => _entity.Teleport(position);
     }
 }

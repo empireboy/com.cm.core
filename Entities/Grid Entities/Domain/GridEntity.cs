@@ -10,6 +10,7 @@ namespace CM.Core.Domain
 
         public event Action<Int2> PositionChanged;
         public event Action<Direction> DirectionChanged;
+        public event Action<Int2> Teleported;
         public event Action<bool> MovementStateChanged;
         public event Action MovementFinished;
         public event Action<Int2> TileReached;
@@ -54,6 +55,13 @@ namespace CM.Core.Domain
         {
             TileReached?.Invoke(Position);
             MovementFinished?.Invoke();
+        }
+
+        public void Teleport(Int2 position)
+        {
+            Position = position;
+
+            Teleported?.Invoke(position);
         }
     }
 }

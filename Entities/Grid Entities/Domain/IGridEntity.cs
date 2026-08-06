@@ -10,6 +10,7 @@ namespace CM.Core.Domain
 
         event Action<Int2> PositionChanged;
         event Action<Direction> DirectionChanged;
+        event Action<Int2> Teleported;
         event Action<bool> MovementStateChanged;
         event Action MovementFinished;
         event Action<Int2> TileReached;
@@ -18,5 +19,6 @@ namespace CM.Core.Domain
         void SetDirection(Direction direction);
         void SetMoving(bool isMoving);
         void FinishMovement();
+        void Teleport(Int2 position);
     }
 }
