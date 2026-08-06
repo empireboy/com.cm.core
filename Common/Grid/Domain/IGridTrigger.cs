@@ -1,6 +1,6 @@
 namespace CM.Core.Domain
 {
-    public interface IGridTrigger
+    public interface IGridTrigger : IGridEntity
     {
         void Execute(IGridEntity entity);
     }
