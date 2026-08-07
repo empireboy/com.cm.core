@@ -4,31 +4,39 @@ namespace CM.Core.Domain
 {
     public class Grid
     {
-        private readonly int _width;
-        private readonly int _height;
+        public int Width { get; }
+        public int Height { get; }
+        public Int2 Origin { get; }
+
         private readonly GridCell[,] _cells;
 
-        public Grid(int width, int height)
+        public Grid(int width, int height, Int2 origin)
         {
-            _width = width;
-            _height = height;
+            Width = width;
+            Height = height;
+            Origin = origin;
+
             _cells = new GridCell[width, height];
 
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    _cells[x, y] = new GridCell(new Int2(x, y));
+                    Int2 gridPosition = new(origin.x + x, origin.y + y);
+
+                    _cells[x, y] = new GridCell(gridPosition);
                 }
             }
         }
 
         public bool InRange(Int2 position)
         {
-            return position.x >= 0 &&
-                position.x < _width &&
-                position.y >= 0 &&
-                position.y < _height;
+            Int2 index = ToIndex(position);
+
+            return index.x >= 0 &&
+                index.x < Width &&
+                index.y >= 0 &&
+                index.y < Height;
         }
 
         public GridCell GetCell(Int2 position)
@@ -36,7 +44,9 @@ namespace CM.Core.Domain
             if (!InRange(position))
                 throw new ArgumentOutOfRangeException(nameof(position));
 
-            return _cells[position.x, position.y];
+            Int2 index = ToIndex(position);
+
+            return _cells[index.x, index.y];
         }
 
         public bool TryOccupy(IGridEntity entity, Int2 position)
@@ -62,6 +72,11 @@ namespace CM.Core.Domain
             GridCell cell = GetCell(position);
 
             cell.ClearOccupant();
+        }
+
+        private Int2 ToIndex(Int2 position)
+        {
+            return new Int2(position.x - Origin.x, position.y - Origin.y);
         }
     }
 }
