@@ -60,7 +60,8 @@ namespace CM.Core.Application
         public bool TryTeleport(Int2 position) => _gridTeleportUseCase.TryTeleport(position);
         public bool TryTeleport(Int2 position, Direction direction) => _gridTeleportUseCase.TryTeleport(position, direction);
         public void SetMoving(bool moving) => _entity.SetMoving(moving);
-        public void NotifyMovementFinished() => _entity.FinishMovement();
         public void Teleport(Int2 position) => _entity.Teleport(position);
+        public void NotifyTileReached() => _entity.NotifyTileReached();
+        public void NotifyMovementFinished() => _entity.NotifyMovementFinished();
     }
 }

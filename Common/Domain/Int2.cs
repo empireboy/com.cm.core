@@ -1,3 +1,5 @@
+using System;
+
 namespace CM.Core.Domain
 {
     public readonly struct Int2
@@ -9,6 +11,18 @@ namespace CM.Core.Domain
         {
             this.x = x;
             this.y = y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Int2 @int &&
+                   x == @int.x &&
+                   y == @int.y;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(x, y);
         }
 
         public static Int2 operator +(Int2 a, Int2 b)

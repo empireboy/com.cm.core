@@ -18,7 +18,8 @@ namespace CM.Core.Domain
         void SetPosition(Int2 position);
         void SetDirection(Direction direction);
         void SetMoving(bool isMoving);
-        void FinishMovement();
         void Teleport(Int2 position);
+        void NotifyTileReached();
+        void NotifyMovementFinished();
     }
 }
