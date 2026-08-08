@@ -1,4 +1,4 @@
-namespace CM.Core.Interfaces
+namespace CM.Core.Application
 {
     public interface IJumpPhysics
     {

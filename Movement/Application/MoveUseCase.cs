@@ -1,5 +1,4 @@
 using CM.Core.Domain;
-using CM.Core.Interfaces;
 
 namespace CM.Core.Application
 {
