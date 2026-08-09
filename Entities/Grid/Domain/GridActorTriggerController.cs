@@ -16,17 +16,17 @@ namespace CM.Core.Domain
 
         public void Initialize()
         {
-            _actor.MovementFinished += OnMovementFinished;
+            _actor.TileReached += OnTileReached;
         }
 
         public void Dispose()
         {
-            _actor.MovementFinished -= OnMovementFinished;
+            _actor.TileReached -= OnTileReached;
         }
 
-        private void OnMovementFinished()
+        private void OnTileReached(Int2 position)
         {
-            GridCell cell = _grid.GetCell(_actor.Position);
+            GridCell cell = _grid.GetCell(position);
 
             cell.Trigger?.Execute(_grid, _actor);
         }
