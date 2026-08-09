@@ -17,7 +17,6 @@ namespace CM.Core.Application
                 return false;
 
             entity.Teleport(position);
-            entity.NotifyTileReached();
 
             return true;
         }
