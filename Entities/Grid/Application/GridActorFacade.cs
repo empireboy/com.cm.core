@@ -36,17 +36,26 @@ namespace CM.Core.Application
         private readonly Grid _grid;
         private readonly GridMovementUseCase _gridMovementUseCase;
         private readonly GridTeleportUseCase _gridTeleportUseCase;
+        private readonly GridInteractionUseCase _gridInteractionUseCase;
 
-        public GridActorFacade(IGridActor entity, Grid grid, GridMovementUseCase gridMovementUseCase, GridTeleportUseCase gridTeleportUseCase) : base(entity)
+        public GridActorFacade(
+            IGridActor entity,
+            Grid grid,
+            GridMovementUseCase gridMovementUseCase,
+            GridTeleportUseCase gridTeleportUseCase,
+            GridInteractionUseCase gridInteractionUseCase
+        ) : base(entity)
         {
             _grid = grid;
             _gridMovementUseCase = gridMovementUseCase;
             _gridTeleportUseCase = gridTeleportUseCase;
+            _gridInteractionUseCase = gridInteractionUseCase;
         }
 
         public bool TryMove(Direction direction) => _gridMovementUseCase.TryMove(_grid, ActorEntity, direction);
         public bool TryTeleport(Int2 position) => _gridTeleportUseCase.TryTeleport(_grid, ActorEntity, position);
         public bool TryTeleport(Int2 position, Direction direction) => _gridTeleportUseCase.TryTeleport(_grid, ActorEntity, position, direction);
+        public bool TryInteract() => _gridInteractionUseCase.TryInteract(_grid, ActorEntity);
         public void SetMoving(bool moving) => ActorEntity.SetMoving(moving);
         public void Teleport(Int2 position) => ActorEntity.Teleport(position);
         public void NotifyTileReached() => ActorEntity.NotifyTileReached();
