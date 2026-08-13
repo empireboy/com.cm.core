@@ -48,6 +48,7 @@ namespace CM.Core.Application
             GridInteractionUseCase gridInteractionUseCase
         ) : base(entity)
         {
+            _gameStateManager = gameStateManager;
             _grid = grid;
             _gridMovementUseCase = gridMovementUseCase;
             _gridTeleportUseCase = gridTeleportUseCase;
