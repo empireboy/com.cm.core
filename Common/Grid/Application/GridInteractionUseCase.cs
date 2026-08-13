@@ -4,7 +4,7 @@ namespace CM.Core.Application
 {
     public class GridInteractionUseCase
     {
-        public bool TryInteract(Grid grid, IGridEntity entity)
+        public bool TryInteract(Grid grid, IGridEntity entity, GameStateManager gameStateManager)
         {
             Int2 targetPosition = entity.Position + entity.Direction.ToInt2();
 
@@ -15,7 +15,9 @@ namespace CM.Core.Application
 
             if (cell.Occupant is not IInteractable interactable)
                 return false;
-                
+
+            gameStateManager.ChangeState(GameStates.Dialogue);
+
             interactable.Interact();
 
             return true;

@@ -33,6 +33,7 @@ namespace CM.Core.Application
 
         private IGridActor ActorEntity => (IGridActor)Entity;
 
+        private readonly GameStateManager _gameStateManager;
         private readonly Grid _grid;
         private readonly GridMovementUseCase _gridMovementUseCase;
         private readonly GridTeleportUseCase _gridTeleportUseCase;
@@ -40,6 +41,7 @@ namespace CM.Core.Application
 
         public GridActorFacade(
             IGridActor entity,
+            GameStateManager gameStateManager,
             Grid grid,
             GridMovementUseCase gridMovementUseCase,
             GridTeleportUseCase gridTeleportUseCase,
@@ -55,7 +57,7 @@ namespace CM.Core.Application
         public bool TryMove(Direction direction) => _gridMovementUseCase.TryMove(_grid, ActorEntity, direction);
         public bool TryTeleport(Int2 position) => _gridTeleportUseCase.TryTeleport(_grid, ActorEntity, position);
         public bool TryTeleport(Int2 position, Direction direction) => _gridTeleportUseCase.TryTeleport(_grid, ActorEntity, position, direction);
-        public bool TryInteract() => _gridInteractionUseCase.TryInteract(_grid, ActorEntity);
+        public bool TryInteract() => _gridInteractionUseCase.TryInteract(_grid, ActorEntity, _gameStateManager);
         public void SetMoving(bool moving) => ActorEntity.SetMoving(moving);
         public void Teleport(Int2 position) => ActorEntity.Teleport(position);
         public void NotifyTileReached() => ActorEntity.NotifyTileReached();
