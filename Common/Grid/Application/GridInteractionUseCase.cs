@@ -16,9 +16,10 @@ namespace CM.Core.Application
             if (cell.Occupant is not IInteractable interactable)
                 return false;
 
-            gameStateManager.ChangeState(GameStates.Dialogue);
+            if (!interactable.TryInteract())
+                return false;
 
-            interactable.Interact();
+            gameStateManager.ChangeState(GameStates.Dialogue);
 
             return true;
         }
